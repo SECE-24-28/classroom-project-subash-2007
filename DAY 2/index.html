@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="homePage">
+        <h1>Mobile Recharge</h1>
+        <p>Quick and Easy Recharge</p>
+        <button onclick="showAuth()">Get Started</button>
+    </div>
+
+    <div class="container hidden" id="authPage">
+        <h2 id="authTitle">Login</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="handleAuth()">Continue</button>
+        <p class="toggle-auth">
+            <span id="authToggle" onclick="toggleAuth()">Don't have an account? Sign Up</span>
+        </p>
+    </div>
+
+    <div class="container hidden" id="rechargePage">
+        <div class="header">
+            <h2>Recharge</h2>
+            <button onclick="showHistory()" class="history-btn">History</button>
+        </div>
+        <input type="tel" id="mobileNumber" placeholder="Enter Mobile Number" maxlength="10">
+        
+        <div class="operators">
+            <div class="operator" onclick="selectOperator('Airtel')">
+                <div class="operator-logo airtel">A</div>
+                <span>Airtel</span>
+            </div>
+            <div class="operator" onclick="selectOperator('Jio')">
+                <div class="operator-logo jio">J</div>
+                <span>Jio</span>
+            </div>
+            <div class="operator" onclick="selectOperator('Vi')">
+                <div class="operator-logo vi">V</div>
+                <span>Vi</span>
+            </div>
+            <div class="operator" onclick="selectOperator('BSNL')">
+                <div class="operator-logo bsnl">B</div>
+                <span>BSNL</span>
+            </div>
+        </div>
+
+        <div id="plansSection" class="hidden">
+            <h3>Select Plan</h3>
+            <div id="plansList"></div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="paymentPage">
+        <h2>Payment</h2>
+        <div class="payment-details">
+            <p><strong>Mobile:</strong> <span id="payMobile"></span></p>
+            <p><strong>Operator:</strong> <span id="payOperator"></span></p>
+            <p><strong>Plan:</strong> <span id="payPlan"></span></p>
+            <p><strong>Amount:</strong> ₹<span id="payAmount"></span></p>
+        </div>
+        
+        <div class="payment-methods">
+            <button class="payment-method active" onclick="selectPaymentMethod('upi')">UPI</button>
+            <button class="payment-method" onclick="selectPaymentMethod('card')">Card</button>
+        </div>
+        
+        <div id="upiSection">
+            <input type="text" id="upiId" placeholder="Enter UPI ID (e.g., name@upi)">
+        </div>
+        
+        <div id="cardSection" class="hidden">
+            <input type="text" id="cardNumber" placeholder="Card Number" maxlength="16">
+            <input type="text" id="cvv" placeholder="CVV" maxlength="3">
+        </div>
+        
+        <button onclick="processPayment()">Pay Now</button>
+        <button onclick="showRecharge()" class="secondary">Cancel</button>
+    </div>
+
+    <div class="container hidden" id="historyPage">
+        <div class="header">
+            <h2>Recharge History</h2>
+            <button onclick="showRecharge()" class="back-btn">Back</button>
+        </div>
+        <div id="historyList"></div>
+    </div>
+
+    <div class="container hidden" id="successPage">
+        <div class="success-animation">
+            <div class="checkmark-circle">
+                <div class="checkmark"></div>
+            </div>
+        </div>
+        <h2 class="success-title">Payment Successful!</h2>
+        <p class="success-message">Your recharge has been completed</p>
+        <div class="success-details">
+            <p><strong>Mobile:</strong> <span id="successMobile"></span></p>
+            <p><strong>Operator:</strong> <span id="successOperator"></span></p>
+            <p><strong>Amount:</strong> ₹<span id="successAmount"></span></p>
+            <p><strong>Transaction ID:</strong> <span id="transactionId"></span></p>
+        </div>
+        <button onclick="showRecharge()">Done</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
